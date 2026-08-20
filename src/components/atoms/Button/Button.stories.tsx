@@ -74,6 +74,18 @@ export const IconOnly: Story = {
     'aria-label': 'Delete item',
   },
 };
+export const AllVariants: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+      {(['primary', 'secondary', 'outline', 'ghost', 'link'] as const).map((v) => (
+        <Button key={v} variant={v}>
+          {v}
+        </Button>
+      ))}
+    </div>
+  ),
+};
+
 export const WithIcons: Story = {
   args: {
     variant: 'primary',
