@@ -29,39 +29,71 @@ A modular, highly reusable React component system built with TypeScript, Tailwin
 * **Framework:** React + Vite
 * **Language:** TypeScript
 * **Styling:** Tailwind CSS
-* **Design System / Documentation:** Storybook 8+
+* **Design System / Documentation:** Storybook 10
 
 ---
 
 ## Getting Started
 
 ### 1. Installation
+
 Clone the repository and install dependencies:
+
 ```bash
 npm install
-2. Run Storybook
+```
+
+### 2. Run Storybook
+
 Launch the isolated component development workshop:
 
-Bash
+```bash
 npm run storybook
-Storybook will run locally at http://localhost:6006.
+```
 
-3. Build Project
-Bash
-npm run build
-📁 Project Structure
-Plaintext
+Storybook will run locally at http://localhost:6006. Use the **Theme** toolbar button to switch between light and dark mode.
+
+### 3. Run the demo app
+
+```bash
+npm run dev
+```
+
+### 4. Build
+
+```bash
+npm run build      # demo SPA
+npm run build:lib  # library build (dist/ + styles.css)
+npm pack           # package the library as a tarball for consumers
+```
+
+---
+
+## Consuming the library
+
+See **[docs/CONSUMPTION.md](docs/CONSUMPTION.md)** for the full integration guide (tarball install, Tailwind preset setup, dark mode, fonts).
+
+A UI/UX audit of the current components lives in **[AUDIT.md](AUDIT.md)**.
+
+---
+
+## 📁 Project Structure
+
+```text
 src/
 ├── components/
 │   ├── atoms/
 │   │   ├── Badge/
 │   │   ├── Button/
-│   │   └── Input/
+│   │   ├── Input/
+│   │   └── Typography/
 │   ├── molecules/
 │   │   ├── DataTable/
 │   │   └── Modal/
 │   └── organisms/
 │       ├── Navbar/
 │       └── Sidebar/
+├── tokens/
 ├── index.css
 └── index.ts
+```
