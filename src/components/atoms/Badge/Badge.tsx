@@ -1,7 +1,6 @@
 import React from 'react';
 import type { BadgeProps } from './Badge.types';
 
-
 export const Badge: React.FC<BadgeProps> = ({
   variant = 'neutral',
   size = 'md',
@@ -20,10 +19,20 @@ export const Badge: React.FC<BadgeProps> = ({
 
   const variantStyles = {
     neutral:
-      'bg-lightSurface dark:bg-darkSurface text-lightBadge dark:text-darkBadge border border-lightBorder dark:border-darkBorder',
-    success: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400',
-    warning: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400',
-    danger: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400',
+      'bg-gray-100 text-gray-700 border border-gray-200 ' +
+      'dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700',
+
+    success:
+      'bg-green-100 text-green-700 border border-green-200 ' +
+      'dark:bg-green-900/40 dark:text-green-400 dark:border-green-800',
+
+    warning:
+      'bg-amber-100 text-amber-700 border border-amber-200 ' +
+      'dark:bg-amber-900/40 dark:text-amber-400 dark:border-amber-800',
+
+    danger:
+      'bg-red-100 text-red-700 border border-red-200 ' +
+      'dark:bg-red-900/40 dark:text-red-400 dark:border-red-800',
   };
 
   return (

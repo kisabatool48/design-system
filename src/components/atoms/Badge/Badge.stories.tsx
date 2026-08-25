@@ -46,3 +46,22 @@ export const Sizes: Story = {
     </div>
   ),
 };
+
+export const Dark: Story = {
+  render: () => (
+    <div className="dark bg-gray-950 p-4">
+      <div className="flex gap-2 flex-wrap">
+        <Badge variant="neutral">Draft</Badge>
+        <Badge variant="success" showDot>
+          In stock
+        </Badge>
+        <Badge variant="warning" showDot>
+          Low stock
+        </Badge>
+        <Badge variant="danger" showDot>
+          Retired
+        </Badge>
+      </div>
+    </div>
+  ),
+};

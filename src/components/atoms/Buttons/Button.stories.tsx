@@ -92,3 +92,14 @@ export const WithIcons: Story = {
     );
   },
 };
+export const AllVariantsDark: Story = {
+  render: () => (
+    <div className="dark bg-darkBg p-6 flex gap-3 flex-wrap">
+      {(['primary', 'secondary', 'outline', 'ghost', 'link'] as const).map((v) => (
+        <Button key={v} variant={v}>
+          {v}
+        </Button>
+      ))}
+    </div>
+  ),
+};
