@@ -2,7 +2,7 @@ import React from 'react';
 import type { ButtonProps, ButtonSize, ButtonVariant, ButtonShape } from './Button.types';
 
 const baseStyles =
-  'inline-flex items-center justify-center gap-2 font-sans font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+  'inline-flex items-center justify-center gap-2 font-sans font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-darkBg disabled:opacity-50 disabled:cursor-not-allowed';
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
@@ -79,7 +79,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     .join(' ');
 
   if (isIconOnly) {
-    const { icon, 'aria-label': ariaLabel, ...iconRest } = rest as any;
+    const { icon, iconOnly, 'aria-label': ariaLabel, ...iconRest } = rest as any;
     return (
       <button
         className={classes}

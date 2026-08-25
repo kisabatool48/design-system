@@ -1,75 +1,99 @@
-# React + TypeScript + Vite
+DevLogix UI Component Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modular, highly reusable React component system built with TypeScript, Tailwind CSS, and Storybook, designed for enterprise asset and resource management workflows.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features & Components
 
-## React Compiler
+* **Data Tables (Asset Listing):**
+  * Generic type-safe data grid (`DataTable<T>`)
+  * Full top toolbar with global search, add asset triggers, and filter controls
+  * Action controls: View QR/Details, Edit, and Delete action handlers
+  * Responsive bottom pagination system (page counts, size selectors, navigation)
+  * States supported: `AssetListing`, `LoadingState`, `EmptyState`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Modals (QR Display & Hardware Tokens):**
+  * Accessible dialog box with backdrop blur and escape key handlers
+  * Embedded asset QR matrix container and verification badge specifications
+  * Action triggers for direct badge download/export
 
-## Expanding the ESLint configuration
+* **Navigation Systems:**
+  * **Sidebar:** Expandable/collapsible vertical navigation with active indicator bars, badge counts, and user profile footer (Dark & Light themes supported).
+  * **Navbar:** Minimalist top navigation header featuring brand mark, links with smooth hover states, authentication shortcuts, and action CTAs.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+* **Framework:** React + Vite
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS
+* **Design System / Documentation:** Storybook 10
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
 
+## Getting Started
+
+### 1. Installation
+
+Clone the repository and install dependencies:
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Run Storybook
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Launch the isolated component development workshop:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run storybook
+```
 
+Storybook will run locally at http://localhost:6006. Use the **Theme** toolbar button to switch between light and dark mode.
+
+### 3. Run the demo app
+
+```bash
+npm run dev
+```
+
+### 4. Build
+
+```bash
+npm run build      # demo SPA
+npm run build:lib  # library build (dist/ + styles.css)
+npm pack           # package the library as a tarball for consumers
+```
+
+---
+
+## Consuming the library
+
+See **[docs/CONSUMPTION.md](docs/CONSUMPTION.md)** for the full integration guide (tarball install, Tailwind preset setup, dark mode, fonts).
+
+A UI/UX audit of the current components lives in **[AUDIT.md](AUDIT.md)**.
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── components/
+│   ├── atoms/
+│   │   ├── Badge/
+│   │   ├── Button/
+│   │   ├── Input/
+│   │   └── Typography/
+│   ├── molecules/
+│   │   ├── DataTable/
+│   │   └── Modal/
+│   └── organisms/
+│       ├── Navbar/
+│       └── Sidebar/
+├── tokens/
+├── index.css
+└── index.ts
 ```
