@@ -7,13 +7,18 @@ const baseStyles =
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
     'bg-brand hover:bg-brand-hover dark:bg-brand-dark dark:hover:bg-brand-hover text-black focus:ring-brand shadow-sm',
+    
   secondary:
     'bg-darkElement text-white hover:bg-black dark:bg-lightSurface dark:text-lightText dark:hover:bg-lightBorder focus:ring-brand',
+
   outline:
-    'border border-lightBorder dark:border-darkBorder bg-transparent hover:bg-lightSurface dark:hover:bg-darkSurface text-lightText dark:text-darkText focus:ring-brand',
+    'border border-lightBorder bg-transparent text-lightText hover:bg-lightSurface dark:bg-lightSurface dark:border-darkBorder dark:text-lightText dark:hover:bg-lightBorder focus:ring-brand',
+
   ghost:
-    'bg-transparent hover:bg-lightSurface dark:hover:bg-darkSurface text-lightText dark:text-darkText focus:ring-brand',
-  link: 'bg-transparent text-lightText dark:text-darkText hover:underline focus:ring-brand',
+    'bg-transparent text-lightText hover:bg-lightSurface dark:bg-lightSurface dark:text-lightText dark:hover:bg-lightBorder focus:ring-brand',
+
+  link:
+    'bg-transparent text-lightText hover:underline dark:bg-lightSurface dark:text-lightText dark:hover:bg-lightBorder focus:ring-brand',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

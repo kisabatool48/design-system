@@ -46,19 +46,26 @@ export const Input: React.FC<InputProps> = ({
   };
 
   const groupStateStyles = error
-    ? 'border-red-500 focus-within:ring-red-500'
+    ? 'border-red-500 dark:border-red-500 focus-within:ring-red-500'
     : 'border-lightBorder dark:border-darkBorder';
 
-  const renderButton = (addon: InputButtonAddon, position: 'left' | 'right') => (
+  const renderButton = (
+    addon: InputButtonAddon,
+    position: 'left' | 'right'
+  ) => (
     <button
       type="button"
       onClick={addon.onClick}
       disabled={disabled || addon.disabled}
       aria-label={addon.ariaLabel}
-      className={`shrink-0 font-medium bg-black/5 dark:bg-white/10 text-lightText dark:text-darkText
-        hover:bg-black/10 dark:hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed
-        disabled:hover:bg-black/5 dark:disabled:hover:bg-white/10 transition-colors
-        focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand
+      className={`shrink-0 font-medium
+        bg-white dark:bg-white
+        text-lightText dark:text-gray-900
+        hover:bg-gray-50 dark:hover:bg-gray-100
+        disabled:opacity-50 disabled:cursor-not-allowed
+        transition-colors
+        focus:outline-none focus-visible:ring-2
+        focus-visible:ring-inset focus-visible:ring-brand
         ${segmentSizeStyles[size]}
         ${position === 'left' ? 'rounded-l-lg border-r' : 'rounded-r-lg border-l'}
         border-lightBorder dark:border-darkBorder`}
@@ -68,33 +75,50 @@ export const Input: React.FC<InputProps> = ({
     </button>
   );
 
-  const renderDropdown = (addon: InputDropdownAddon, position: 'left' | 'right') => (
+  const renderDropdown = (
+    addon: InputDropdownAddon,
+    position: 'left' | 'right'
+  ) => (
     <div
-      className={`relative shrink-0 ${position === 'left' ? 'border-r' : 'border-l'}
+      className={`relative shrink-0
+        ${position === 'left' ? 'border-r' : 'border-l'}
         border-lightBorder dark:border-darkBorder`}
     >
       <select
         aria-label={addon.ariaLabel || `${label} option`}
         value={addon.value}
-        defaultValue={addon.value === undefined ? addon.defaultValue : undefined}
+        defaultValue={
+          addon.value === undefined ? addon.defaultValue : undefined
+        }
         onChange={(e) => addon.onChange?.(e.target.value)}
         disabled={disabled || addon.disabled}
-        className={`appearance-none bg-black/5 dark:bg-white/10 font-medium
-          text-lightText dark:text-darkText hover:bg-black/10 dark:hover:bg-white/20
-          disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors
-          focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand
-          ${dropdownSizeStyles[size]}
-          ${position === 'left' ? 'rounded-l-lg' : 'rounded-r-lg'}`}
+        className={`appearance-none
+            bg-white dark:bg-white
+            font-medium
+            text-lightText dark:text-gray-900
+            hover:bg-gray-50 dark:hover:bg-gray-100
+            disabled:opacity-50 disabled:cursor-not-allowed
+            cursor-pointer transition-colors
+            focus:outline-none focus-visible:ring-2
+            focus-visible:ring-inset focus-visible:ring-brand
+            ${dropdownSizeStyles[size]}
+            ${position === 'left' ? 'rounded-l-lg' : 'rounded-r-lg'}`}
         {...addon.props}
       >
         {addon.options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option
+            key={option.value}
+            value={option.value}
+            className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+          >
             {option.label}
           </option>
         ))}
       </select>
+
       <svg
-        className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5
+        className="pointer-events-none absolute right-2 top-1/2
+          -translate-y-1/2 h-3.5 w-3.5
           text-lightText/60 dark:text-darkText/60"
         viewBox="0 0 20 20"
         fill="none"
@@ -122,25 +146,36 @@ export const Input: React.FC<InputProps> = ({
       </label>
 
       <div
-        className={`flex w-full rounded-lg border bg-transparent transition-all
-          focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-black/5 dark:focus-within:ring-white/20
-          ${groupStateStyles}
-          ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
-          ${className}`}
+        className={`flex w-full rounded-lg border
+              bg-white dark:bg-white
+              transition-all
+              focus-within:ring-2
+              focus-within:ring-offset-2
+              focus-within:ring-black/5
+              dark:focus-within:ring-black/10
+              ${groupStateStyles}
+              ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
+              ${className}`}
       >
         {leftButton && renderButton(leftButton, 'left')}
         {leftDropdown && renderDropdown(leftDropdown, 'left')}
 
         <input
           id={inputId}
-          className={`w-full min-w-0 font-sans bg-transparent focus:outline-none
-            disabled:cursor-not-allowed text-lightText dark:text-darkText
-            placeholder:text-lightText/50 dark:placeholder:text-darkText/50
+          className={`w-full min-w-0 font-sans
+            bg-transparent focus:outline-none
+            disabled:cursor-not-allowed
+            text-lightText dark:text-lightText
+            placeholder:text-lightText/50
+            dark:placeholder:text-gray/50
+            selection:bg-brand/20
             ${sizeStyles[size]}
             ${hasLeftAddon ? 'rounded-l-none' : 'rounded-l-lg'}
             ${hasRightAddon ? 'rounded-r-none' : 'rounded-r-lg'}`}
           aria-invalid={!!error || undefined}
-          aria-describedby={error || helperText ? messageId : undefined}
+          aria-describedby={
+            error || helperText ? messageId : undefined
+          }
           disabled={disabled}
           required={required}
           {...props}
@@ -153,9 +188,10 @@ export const Input: React.FC<InputProps> = ({
       {(error || helperText) && (
         <p
           id={messageId}
-          className={`text-xs ${
-            error ? 'text-red-500' : 'text-lightText/70 dark:text-darkText/70'
-          }`}
+          className={`text-xs ${error
+              ? 'text-red-500 dark:text-red-400'
+              : 'text-lightText/70 dark:text-darkText/70'
+            }`}
         >
           {error || helperText}
         </p>
